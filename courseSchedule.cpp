@@ -5,8 +5,8 @@ int main(){
     int n,m;
     cin >> n >> m;
     vector<int> indeg (n, 0);
-    vector<vector<int>> edge (n, vector<int> (100000));
-    queue<int>q;
+    vector<vector<int>> edge (n);
+    priority_queue<int, vector<int>, greater<int>>q;
     for(int i = 0; i < m; i++){
         int a,b;
         scanf(" %d %d", &a, &b);
@@ -21,7 +21,7 @@ int main(){
     }
     vector<int> ans;
     while(!q.empty()){
-        int curr = q.front();
+        int curr = q.top();
         ans.push_back(curr);
         q.pop();
         for(auto x : edge[curr]){
@@ -34,7 +34,7 @@ int main(){
     if(ans.size() != n){
         cout << "IMPOSSIBLE" << endl;
     }
-    for(int i = 0; i < n; i++){
-        cout << ans[i]+1 << " ";
+    for(auto x : ans){
+        cout << x+1 << " ";
     }
 }
